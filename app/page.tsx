@@ -4,7 +4,7 @@ import { getWeather } from "./lib/weather";
 
 export default function Home() {
   const [city, setCity] = useState("");
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [err, setError] = useState("");
 
@@ -40,6 +40,21 @@ export default function Home() {
           <p><b>Wind Speed: </b>{data.currentConditions.windspeed}</p>
           <p><b>Condition: </b>{data.currentConditions.conditions}</p>
           <p><b>Description: </b>{data.description}</p>
+
+          <div className="not-current">
+            <div className="yesterday">
+              <p><b>Temperature: </b>{data.days[0].temp}°C</p>
+              <p><b>Wind Speed: </b>{data.days[0].windspeed}</p>
+              <p><b>Condition: </b>{data.days[0].conditions}</p>
+              <p><b>Description: </b>{data.days[0].description}</p>
+            </div>
+            <div className="tomorrow">
+              <p><b>Temperature: </b>{data.days[2].temp}°C</p>
+              <p><b>Wind Speed: </b>{data.days[2].windspeed}</p>
+              <p><b>Condition: </b>{data.days[2].conditions}</p>
+              <p><b>Description: </b>{data.days[2].description}</p>
+            </div>
+          </div>
         </div>
       )}
     </main>
