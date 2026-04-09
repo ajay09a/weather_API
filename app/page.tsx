@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { getWeather } from "./lib/weather";
+import "./globals.css"
 
 export default function Home() {
   const [city, setCity] = useState("");
@@ -29,6 +30,12 @@ export default function Home() {
       setLoading(false);
     }
   }
+
+  const today = new Date().toISOString().split("T")[0];
+  const todayData = data?.days?.find((d: any) => d.datetime === today);
+  const otherDays = data?.days?.filter((d: any) => d.datetime !== today);
+
+  
   return (
     <main className="main">
       <h1 className="title">Weather App</h1>
@@ -38,17 +45,31 @@ export default function Home() {
       </div>
       {loading && <p className="loading">loading...</p>}
       {err && <p className="error">{err}</p>}
-      {data && <h3>City: {data.address}</h3>}
+      
+      {data && (
+        <div className="weather-container">
+          <h2 className="city-name">{data.address}</h2>
 
-      {data?.days?.map((day: any) => (
-          <div key={day.datetime} className="result">
-            <h3>{day.datetime}</h3>
-            <p><b>Temperature: </b>{day.temp}°C</p>
-            <p><b>Wind Speed: </b>{day.windspeed}</p>
-            <p><b>Condition: </b>{day.conditions}</p>
-            <p><b>Description: </b>{day.description}</p>
+          {todayData && (
+            <div className="today-card">
+              <h3>Today</h3>
+              <p className="temp">{todayData.temp}°C</p>
+              <p>{todayData.conditions}</p>
+              <p>💨 {todayData.windspeed} km/h</p>
+            </div>
+          )}
+
+          <div className="other-days">
+            {otherDays?.map((day: any) => (
+              <div key={day.datetime} className="day-card">
+                <h4>{day.datetime}</h4>
+                <p>{day.temp}°C</p>
+                <p>{day.conditions}</p>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+      )}
     </main>
   );
 }
