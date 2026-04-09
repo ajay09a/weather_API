@@ -1,0 +1,87 @@
+.main {
+  min-height: 100%;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.searchbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.input-box {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  width: 200px;
+}
+
+.search-button {
+  padding: 10px 16px;
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background: #555;
+}
+
+.loading,
+.error {
+  color: white;
+  margin-top: 10px;
+}
+
+.weather-container {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+}
+
+.city-name {
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.today-card {
+  background: #4facfe;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.temp {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.other-days {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.day-card {
+  background: #f1f1f1;
+  padding: 10px;
+  border-radius: 8px;
+  flex: 1;
+}
