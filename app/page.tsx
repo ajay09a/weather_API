@@ -20,6 +20,7 @@ export default function Home() {
       const result = await getWeather(city);
       console.log(result);
       setData(result);
+      setCity("");
     }
     catch(err){
       setError("city not found");
@@ -37,6 +38,7 @@ export default function Home() {
       </div>
       {loading && <p className="loading">loading...</p>}
       {err && <p className="error">{err}</p>}
+      {data && <h3>City: {data.address}</h3>}
 
       {data?.days?.map((day: any) => (
           <div key={day.datetime} className="result">
